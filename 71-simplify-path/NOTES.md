@@ -1,0 +1,7 @@
+"/home/"
+"///"
+"/syiwyri../"
+"/./anime././movie"
+"/./anime./movie"
+"/./anime./..//movie"
+"/../..ga/b/.f..d/..../e.baaeeh./.a"
