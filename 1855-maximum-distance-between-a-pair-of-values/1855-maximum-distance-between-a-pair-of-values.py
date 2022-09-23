@@ -5,7 +5,7 @@ class Solution:
             i = 0
             j = len(nums2)-1
             best = 0
-            while i <= j:
+            while i <= j and j-n > max_dis:
                 mid = i + (j-i)//2
                 if nums1[n] <= nums2[mid]:
                     best = mid-n
