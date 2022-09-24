@@ -12,13 +12,13 @@ class Solution:
                     ans.append(path)
                 return
             right = path.copy()
-            left = path.copy()
+            # left = path.copy()
             if node.right:
                 right.append(node.right.val)
                 recursion(node.right,pathsum+node.right.val,right)
             if node.left:
-                left.append(node.left.val)
-                recursion(node.left,pathsum+node.left.val,left)
+                path.append(node.left.val)
+                recursion(node.left,pathsum+node.left.val,path)
                 
         if not root:
             return []
