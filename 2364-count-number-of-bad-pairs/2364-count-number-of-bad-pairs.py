@@ -1,10 +1,7 @@
 class Solution:
     def countBadPairs(self, nums: List[int]) -> int:
         def findgoods(num):
-            goods = 0
-            for i in range(1,num):
-                goods += i
-            return goods
+            return int((num+1) * num/2)
         bads = findgoods(len(nums)) 
         vals = defaultdict(int)
         for i in range(len(nums)):
