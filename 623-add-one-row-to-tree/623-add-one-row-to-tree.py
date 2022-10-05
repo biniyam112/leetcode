@@ -12,10 +12,6 @@ class Solution:
             if not node:
                 return
             if curdepth == depth-1:
-                # new1 = TreeNode(val) # new2 = TreeNode(val)
-                # right = node.right # new1.right = right
-                # node.right = new1 # left = node.left
-                # new2.left = left # node.left = new2
                 right = TreeNode(val,None,node.right)
                 left = TreeNode(val,node.left,None)
                 node.right = right
@@ -24,6 +20,5 @@ class Solution:
             else:
                 recursion(curdepth+1,node.right)
                 recursion(curdepth+1,node.left)
-        temp = root
         recursion(1,root)                        
-        return temp
+        return root
