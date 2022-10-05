@@ -17,19 +17,9 @@ class Solution:
             for child in path[val]:
                 found = found or dfs_s(child)
             return found
-        
-        def dfs_d(val):
-            if val in visited_d:
-                return False
-            visited_d.add(val)
-            if val == source:
-                return True
-            found = False
-            for child in path[val]:
-                found = found or dfs_d(child)
-            return found
+    
         
             
-        return dfs_s(source) or dfs_d(destination)
+        return dfs_s(source)
                 
         
