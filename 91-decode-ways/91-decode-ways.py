@@ -19,7 +19,4 @@ class Solution:
                 two_steps = recursion(index+2)
             one_step = recursion(index+1)
             return one_step+two_steps
-        recursion(0)
-        # if self.invalid:
-            # return 0
         return recursion(0)
