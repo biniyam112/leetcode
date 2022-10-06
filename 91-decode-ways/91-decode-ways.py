@@ -1,6 +1,5 @@
 class Solution:
     def numDecodings(self, s: str) -> int:
-        self.invalid = False
         if s[0] == '0':
             return 0
         @cache
@@ -10,8 +9,6 @@ class Solution:
             if index > len(s):
                 return 0
             if s[index] == '0':
-                if int(s[index-1]) > 2 or s[index-1] == '0':
-                    self.invalid = True
                 return 0
             one_step = 0
             two_steps = 0
