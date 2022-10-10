@@ -1,5 +1,10 @@
 class Solution:
     def canMeasureWater(self, jug1: int, jug2: int, target: int) -> bool:
+        if jug1+jug2 == target:
+            return True
+        if jug1+jug2 < target:
+            return False
+        
         queue = collections.deque()
         queue.append((0,0))
         visited = set()
