@@ -10,9 +10,9 @@ class Solution:
         def dfs(node):
             if low <= node.val <= high:
                 self.ans += node.val
-            if node.left:
+            if node.left and node.val > low:
                 dfs(node.left)
-            if node.right:
+            if node.right and node.val < high:
                 dfs(node.right)
         dfs(root)
         return self.ans
