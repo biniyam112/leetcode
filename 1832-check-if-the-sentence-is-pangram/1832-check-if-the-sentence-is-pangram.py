@@ -1,9 +1,9 @@
 class Solution:
     def checkIfPangram(self, sentence: str) -> bool:
-        visited = set()
+        indexes = [0] * 26
         for c in sentence:
-            visited.add(c)
-        if len(visited) == 26:
+            indexes[ord(c)-97] = 1
+        if sum(indexes) == 26:
             return True
         return False
         
