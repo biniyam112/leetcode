@@ -1,7 +1,6 @@
 class RandomizedCollection:
 
     def __init__(self):
-        self.collections = defaultdict(int)
         self.items = []
         self.val_address = defaultdict(list)
         
@@ -9,17 +8,15 @@ class RandomizedCollection:
     def insert(self, val: int) -> bool:
         self.val_address[val].append(len(self.items))
         self.items.append(val)
-        self.collections[val] += 1
-        if self.collections[val] == 1:
+        if len(self.val_address[val]) == 1:
             return True
             
         
 
     def remove(self, val: int) -> bool:
-        if self.collections[val] > 0:
+        if len(self.val_address[val]) > 0:
             val_index = self.val_address[val].pop()
             self.items[val_index] = float('-inf')
-            self.collections[val] -= 1
             return True
         
 
