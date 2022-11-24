@@ -1,24 +1,21 @@
+import java.util.ArrayList;
+
 class Solution {
-    public int counter(int n){
-        int counter = 0;
-        while(n>0){
-            if(n%2 == 1){
-                n -= 1;
-                counter += 1;
-            }
-            else {
-                n /= 2;
-            }
-        }
-        return counter;
-    }
     public int[] countBits(int n) {
-        ArrayList<Integer> ans = new ArrayList<Integer>();
-        Solution solution = new Solution();
-        for(int i=0;i <= n;i++){
-            ans.add(solution.counter(i));
+        ArrayList<Integer> ones = new ArrayList<Integer>();
+        ones.add(0);
+        int next_power = 1;
+        for(int i = 1;i<= n;i++){
+            if(i == next_power){
+                ones.add(1);
+                next_power *= 2;
+            }
+            else{
+                int cur_power = next_power/2;
+                ones.add(ones.get(cur_power) + ones.get(i - cur_power));
+            }
         }
-        int[] arr = ans.stream().mapToInt(i -> i).toArray();
+        int[] arr = ones.stream().mapToInt(i -> i).toArray();
         return arr;
     }
 }
