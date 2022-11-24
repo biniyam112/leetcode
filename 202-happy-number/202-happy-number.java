@@ -11,7 +11,7 @@ class Solution {
             if (visited.contains(squared)){
                 return false;
             }
-            if(squared == 1){
+            else if(squared == 1){
                 return true;
             }
             n = squared;
