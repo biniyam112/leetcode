@@ -5,8 +5,5 @@ class Solution:
         for count in tasks.values():
             if count == 1:
                 return -1
-            else:
-                ans += count //3
-                if count % 3 != 0:
-                    ans += 1
+            ans += (count //3) + ((count%3) != 0)
         return ans
