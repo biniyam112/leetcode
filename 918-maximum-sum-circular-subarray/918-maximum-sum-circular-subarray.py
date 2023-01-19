@@ -7,27 +7,19 @@ class Solution:
         
         
         maxsum = float('-inf')
-        cursum = 0
-        for i,val in enumerate(nums):
-            cursum += val
-            if cursum > maxsum:
-                maxsum = cursum
-            if cursum < 0:
-                cursum = 0
-                
         minsum = float('inf')
-        cursum = 0
+        curmax = 0
+        curmin = 0
         for i,val in enumerate(nums):
-            cursum += val
-            if cursum < minsum:
-                minsum = cursum
-            if cursum > 0:
-                cursum = 0
-        
+            curmax += val
+            curmin += val
+            maxsum = max(curmax,maxsum)
+            minsum = min(curmin,minsum)
+            curmax = max(curmax,0)
+            curmin = min(curmin,0)
+                
         total = sum(nums)
-        # print(total,minsum)
-        if total == minsum:
-            return maxsum
+        if total == minsum: return maxsum
         return max(maxsum,total-minsum)
             
                 
