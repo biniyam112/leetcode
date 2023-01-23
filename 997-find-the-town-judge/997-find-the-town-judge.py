@@ -5,8 +5,8 @@ class Solution:
         for er,ee in trust:
             relation[er-1][0] = 1
             relation[ee-1][1] += 1
-        for index,(trusts,trusted) in enumerate(relation):
-            if trusts == 0 and trusted == n-1:           
-                return index+1
+        for i in range(n):
+            if relation[i][0] == 0 and relation[i][1] == n-1:           
+                return i+1
         return -1
         
