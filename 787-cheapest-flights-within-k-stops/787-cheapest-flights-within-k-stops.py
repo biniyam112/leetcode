@@ -13,17 +13,17 @@ class Solution:
             
         
         # price,steps,node
-        path = [(0,src,0)]
+        path = [(0,0,src)]
         heapq.heapify(path)
         while path:
-            price,node,steps = heapq.heappop(path)
+            price,steps,node = heapq.heappop(path)
             if node == dst:
                 return price
             if steps <= k:
                 for to,cost in graph[node]:
                     new_price = price+cost
                     if new_price < visited[(to,steps)]:
-                        heapq.heappush(path,(new_price,to,steps+1))
+                        heapq.heappush(path,(new_price,steps+1,to))
                         visited[(to,steps+1)] = new_price
         return -1
         
