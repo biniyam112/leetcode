@@ -19,13 +19,13 @@ class Solution:
             visited.add((row,col))
             if index == len(word)-1:
                 return True
-            res = False
             for i in range(4):
                 new_row,new_col = row+dirs[i],col+dirs[i+1]
                 if inbound(new_row,new_col) and (new_row,new_col) not in visited and board[new_row][new_col] == word[index+1]:
-                    res = res or dfs(new_row,new_col,index+1,visited)
+                    if dfs(new_row,new_col,index+1,visited):
+                        return True
             visited.remove((row,col))
-            return res
+            return False
         
         starter = defaultdict(list)
         for i in range(m):
