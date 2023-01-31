@@ -33,8 +33,7 @@ class Solution:
                 starter[board[i][j]].append((i,j))
                 
         start = word[0]
-        ans = False
         for row,col in starter[start]:
-            ans = ans or dfs(row,col,0,set())
-        return ans
+            if dfs(row,col,0,set()) : return True
+        return False
             
