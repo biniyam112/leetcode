@@ -8,22 +8,22 @@ class Solution:
         
         def handleThree(num,suffix = ''):
             num = num.lstrip('0')
-            if not num or all([x == '0' for x in num]): return ''
+            if not num : return ['']
             if int(num) < 10:
-                return ons[int(num)]+suffix
+                return [ons[int(num)],suffix]
             vals = [int(x) for x in num]
             if int(num) < 100:
                 if vals[0] ==  1 and vals[1] != 0:
                     elves = int(str(vals[0])+str(vals[1]))
-                    return els[elves%10]+suffix
+                    return [els[elves%10],suffix]
                 else:
-                    return tns[vals[0]]+' '+ons[vals[1]]+suffix
+                    return [tns[vals[0]],ons[vals[1]],suffix]
             else:
                 if vals[1] ==  1 and vals[2] != 0:
                     elves = int(str(vals[1])+str(vals[2]))
-                    return ons[vals[0]]+' Hundred '+els[elves%10]+suffix
+                    return [ons[vals[0]],'Hundred',els[elves%10],suffix]
                 else:
-                    return ons[vals[0]]+' Hundred '+tns[vals[1]]+' '+ons[vals[2]]+suffix
+                    return [ons[vals[0]],'Hundred',tns[vals[1]],ons[vals[2]],suffix]
                 
         num = [x for x in str(num)]
         def removeTrie():
@@ -33,29 +33,24 @@ class Solution:
             val = val[::-1]
             return val
         
-        hunds = thd =  mil = bil = ''
+        hunds = thd =  mil = bil = []
         if len(num):
             trie = removeTrie()
             hunds = handleThree(trie)
         if len(num):
             trie = removeTrie()
-            thd = handleThree(trie,' Thousand')
+            thd = handleThree(trie,'Thousand')
         if len(num):
             trie = removeTrie()
-            mil = handleThree(trie,' Million')
+            mil = handleThree(trie,'Million')
         if len(num):
             trie = removeTrie()
-            bil =  handleThree(trie,' Billion') 
-        res = [bil+' '+mil+' '+thd+' '+hunds]
-        ans = []
+            bil =  handleThree(trie,'Billion')
+        
+        res = bil+mil+thd+hunds
+        output = []
         for i in range(len(res)):
             if res[i]:
-                ans.append(res[i])
-        ans = ' '.join(ans).strip(' ')
-        output = ''
-        for i in range(len(ans)):
-            if output and ans[i] == output[-1] == ' ':
-                continue
-            output += ans[i]
-        return output
+                output.append(res[i])
+        return ' '.join(output).strip(' ')
         
