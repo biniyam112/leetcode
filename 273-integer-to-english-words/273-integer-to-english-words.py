@@ -1,34 +1,61 @@
 class Solution:
     def numberToWords(self, num: int) -> str:
-        if not num: return 'Zero'
-        ones = {1:' One', 2:' Two', 3:' Three', 4:' Four', 5:' Five', 6:' Six', 7:' Seven', 8:' Eight', 9:' Nine', 
-				10:' Ten', 11:' Eleven', 12:' Twelve', 13:' Thirteen', 14:' Fourteen', 15:' Fifteen', 16:' Sixteen', 
-				17:' Seventeen', 18:' Eighteen', 19:' Nineteen'}
-        tens = {2:' Twenty', 3:' Thirty', 4:' Forty', 5:' Fifty', 6:' Sixty', 7:' Seventy', 8:' Eighty', 9:' Ninety'}
-		
-        self.output = ''
-        def handleThree(num):
-            if num // 1000000000:
-                handleThree(num // 1000000000)
-                self.output += ' Billion'
-                handleThree(num % 1000000000)
-            elif num // 1000000:
-                handleThree(num // 1000000)
-                self.output += ' Million'
-                handleThree(num % 1000000)
-            elif num // 1000:
-                handleThree(num // 1000)
-                self.output += ' Thousand'
-                handleThree(num % 1000)
-            elif num // 100:
-                handleThree(num // 100)
-                self.output += ' Hundred'
-                handleThree(num % 100)
-            elif num // 10 - 1 > 0:
-                self.output += tens[num // 10]
-                handleThree(num % 10)
-            elif num:
-                self.output += ones[num]
-        handleThree(num)
-        return self.output[1:]
-    
+        if num == 0:
+            return 'Zero'
+        ons = ['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine']
+        els = ['Nineteen', 'Eighteen', 'Seventeen', 'Sixteen', 'Fifteen', 'Fourteen', 'Thirteen', 'Twelve', 'Eleven',''][::-1]
+        tns = ['','Ten','Twenty','Thirty','Forty','Fifty','Sixty','Seventy','Eighty','Ninety']
+        
+        def handleThree(num,suffix = ''):
+            num = num.lstrip('0')
+            if not num or all([x == '0' for x in num]): return ''
+            if int(num) < 10:
+                return ons[int(num)]+suffix
+            vals = [int(x) for x in num]
+            if int(num) < 100:
+                if vals[0] ==  1 and vals[1] != 0:
+                    elves = int(str(vals[0])+str(vals[1]))
+                    return els[elves%10]+suffix
+                else:
+                    return tns[vals[0]]+' '+ons[vals[1]]+suffix
+            else:
+                if vals[1] ==  1 and vals[2] != 0:
+                    elves = int(str(vals[1])+str(vals[2]))
+                    return ons[vals[0]]+' Hundred '+els[elves%10]+suffix
+                else:
+                    return ons[vals[0]]+' Hundred '+tns[vals[1]]+' '+ons[vals[2]]+suffix
+                
+        num = [x for x in str(num)]
+        def removeTrie():
+            val = ''
+            for _ in range(min(3,len(num))):
+                val += num.pop()
+            val = val[::-1]
+            return val
+        
+        hunds = thd =  mil = bil = ''
+        if len(num):
+            trie = removeTrie()
+            hunds = handleThree(trie)
+        if len(num):
+            trie = removeTrie()
+            thd = handleThree(trie,' Thousand')
+        if len(num):
+            trie = removeTrie()
+            mil = handleThree(trie,' Million')
+        if len(num):
+            trie = removeTrie()
+            bil =  handleThree(trie,' Billion') 
+        res = [bil+' '+mil+' '+thd+' '+hunds]
+        ans = []
+        for i in range(len(res)):
+            if res[i]:
+                ans.append(res[i])
+        ans = ' '.join(ans).strip(' ')
+        output = ''
+        for i in range(len(ans)):
+            if output and ans[i] == output[-1] == ' ':
+                continue
+            output += ans[i]
+        return output
+        
