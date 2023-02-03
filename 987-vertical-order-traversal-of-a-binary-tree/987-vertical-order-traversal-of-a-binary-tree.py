@@ -7,12 +7,10 @@
 class Solution:
     def verticalTraversal(self, root: Optional[TreeNode]) -> List[List[int]]:
         colIndexing = defaultdict(list)
-        rowIndexing = defaultdict(int)
         def traversal(node,col= 0,row=0):
             if not node:
                 return 
             colIndexing[col].append((row,node.val))
-            rowIndexing[node.val] = row
             traversal(node.right,col+1,row+1)
             traversal(node.left,col-1,row+1)
             
@@ -25,10 +23,7 @@ class Solution:
         ans = [[] for _ in range(len(colIndexing))]
         for k,v in colIndexing.items():
             v.sort()
-            col  = []
-            for _,node in v:
-                col.append(node)
-            ans[k-minCol] = col
+            ans[k-minCol] = [node for _,node in v]
             
         return ans
         
