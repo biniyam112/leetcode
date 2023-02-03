@@ -8,18 +8,18 @@ class Solution:
 
     def pickIndex(self) -> int:
         sum_ = random.randint(1,self.presum[-1])
-        return bisect_left(self.presum, sum_)
-        # i = 0
-        # j = len(self.presum)
-        # while i < j:
-        #     mid = i + (j-i)//2
-        #     if self.presum[mid] < sum_:
-        #         i = mid+1
-        #     elif self.presum[mid] > sum_:
-        #         j = mid-1
-        #     else:
-        #         return mid
-        # return i
+        # return bisect_left(self.presum, sum_)
+        i = 0
+        j = len(self.presum)-1
+        while i <= j:
+            mid = i + (j-i)//2
+            if self.presum[mid] < sum_:
+                i = mid+1
+            elif self.presum[mid] > sum_:
+                j = mid-1
+            else:
+                return mid
+        return i
         
 
 
