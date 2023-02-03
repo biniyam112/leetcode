@@ -30,24 +30,17 @@ class Solution:
             val = ''
             for _ in range(min(3,len(num))):
                 val += num.pop()
-            val = val[::-1]
-            return val
+            return val[::-1]
         
-        hunds = thd =  mil = bil = []
-        if len(num):
-            trie = removeTrie()
-            hunds = handleThree(trie)
-        if len(num):
-            trie = removeTrie()
-            thd = handleThree(trie,'Thousand')
-        if len(num):
-            trie = removeTrie()
-            mil = handleThree(trie,'Million')
-        if len(num):
-            trie = removeTrie()
-            bil =  handleThree(trie,'Billion')
+        res = deque()
+        powers = ['','Thousand','Million','Billion']
+        for i in range(len(powers)):
+            if num:
+                trie = removeTrie()
+                trieWord = handleThree(trie,powers[i])
+                res.extendleft(trieWord[::-1])
+        # print(res)
         
-        res = bil+mil+thd+hunds
         output = []
         for i in range(len(res)):
             if res[i]:
