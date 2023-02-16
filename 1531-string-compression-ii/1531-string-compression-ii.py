@@ -36,7 +36,6 @@ class Solution:
             if i == len(s): return 0
             delete = dp(i + 1, prev, prev_cnt, k - 1)
             if s[i] == prev:
-                # e.g. a2 -> a3
                 keep = dp(i + 1, prev, prev_cnt + 1, k)
                 if prev_cnt in [1, 9, 99]:
                     keep += 1
