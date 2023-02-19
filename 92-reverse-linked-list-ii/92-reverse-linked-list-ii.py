@@ -5,8 +5,6 @@
 #         self.next = next
 class Solution:
     def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
-        if left == right:
-            return head
         ans = ListNode(next = head)
         cp = head
         right -= left
