@@ -31,8 +31,7 @@ class Solution:
                     inGrid = inbound(new_row,new_col)
                     isWall = inGrid and grid[new_row][new_col] == '#'
                     isLock = inGrid and 65 <= ord(grid[new_row][new_col]) <= 90
-                    seen = (new_row,new_col,keys) in visited
-                    if not inGrid or isWall or seen:
+                    if not inGrid or isWall:
                         continue
                     if isLock and ord(grid[new_row][new_col]) not in copyKey:
                         continue    
