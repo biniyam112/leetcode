@@ -7,8 +7,7 @@ class Solution:
             return True
         
         for i in range(len(haystack)):
-            if haystack[i] == needle[0]:
-                if findMatch(haystack,needle,i):
-                    return i
+            if i+len(needle) <= len(haystack) and needle == haystack[i:i+len(needle)]:
+                return i
         return -1
         
