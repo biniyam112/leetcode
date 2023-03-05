@@ -5,11 +5,8 @@ class Solution:
         if n == 0:
             return 1
         power = self.myPow(x,abs(n)//2)
-        power *= power
-        
-        if n % 2:
-            power *= x
-        
+        power *= power * self.myPow(x,n%2)
+
         if n < 0:
             return 1/power
         return power
