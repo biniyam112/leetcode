@@ -9,7 +9,6 @@ class Solution:
             for item in ans:
                 added = item+tuple([nums[index]])
                 temp.add(tuple(sorted(added)))
-            ans.add(tuple([nums[index]]))
             ans.update(temp)
             makeSuperset(index+1)
         makeSuperset(0)
