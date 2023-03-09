@@ -1,6 +1,5 @@
 class Solution:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
-        # nums.sort()
         def diffExist(indices,indexSet):
             if len(indexSet) > 3 : return True
             for index in indexSet:
@@ -18,7 +17,7 @@ class Solution:
                 for k in range(j+1,len(nums)):
                     cursum = nums[i]+nums[j]+nums[k]
                     rem = target - cursum
-                    if diffExist(set([i,j,k]),valat[rem]):
+                    if diffExist([i,j,k],valat[rem]):
                         idx, *_ = valat[rem]
                         fsum = tuple(sorted([nums[i],nums[j],nums[k],nums[idx]]))
                         ans.add(fsum)
