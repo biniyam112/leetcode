@@ -8,6 +8,7 @@ class Solution:
                     score += i
             return score
         
+
         def recursion(index,remArrow):
             if index == n:
                 res = [x for x in aliceArrows]
@@ -24,10 +25,8 @@ class Solution:
         
         res = recursion(0,numArrows)
         bobArrows = [0] * n
-        for i in range(1,n):
-            if res[i] < 0:
-                bobArrows[i] = aliceArrows[i]+abs(res[i])
-        bobArrows[0] += aliceArrows[0]-res[0]
+        for i in range(n):
+            bobArrows[i] += aliceArrows[i]-res[i]
         return bobArrows
             
             
