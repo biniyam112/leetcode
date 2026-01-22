@@ -20,7 +20,6 @@ class Solution:
                     nums.pop(minSumIndex-1)
                     operations += 1
                     break
-            print(nums)
 
             if nonDecreasing:
                 return operations
