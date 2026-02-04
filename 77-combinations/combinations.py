@@ -7,8 +7,7 @@ class Solution:
                 ans.append([x for x in comb])
             
             for num in range(cur_num+1,n+1):
-                temp = [x for x in comb] + [num]
+                temp = comb + [num]
                 recursion(num,temp)
-        
         recursion(0,[])
         return ans
