@@ -4,7 +4,7 @@ class Solution:
 
         def recursion(cur_num,comb):
             if len(comb) == k:
-                ans.append([x for x in comb])
+                ans.append(comb)
             
             for num in range(cur_num+1,n+1):
                 temp = comb + [num]
