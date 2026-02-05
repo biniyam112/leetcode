@@ -5,8 +5,6 @@ class Solution:
 
         for i in range(n):
             movement = (i+nums[i]) % n
-            movement += n
-            movement %= n
             results[i] = nums[movement]
         
         return results
