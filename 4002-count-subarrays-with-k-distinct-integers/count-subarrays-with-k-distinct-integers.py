@@ -24,7 +24,7 @@ class Solution:
                 valr = nums[lr]
                 count = counterr[valr]
                 counterr[valr] -= 1
-                # if counterr[valr] == 0: counterr.pop(val,None)
+                if counterr[valr] == 0: counterr.pop(valr,None)
                 if count == m: more_m -= 1
                 lr += 1
             
